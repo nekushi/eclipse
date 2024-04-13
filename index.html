@@ -8,7 +8,7 @@
             box-sizing: border-box;
         }
         body {
-            max-width: 978px;
+            max-width: 980px;
             padding: 0;
             margin: 0;
             margin-inline: auto;
@@ -45,11 +45,14 @@
             right: -30%;
             transform: translate(50%, -50%);
         }
+        .darken {
+            animation: darken 5000ms linear forwards;
+        }
         .shine {
-            animation: showText 3000ms linear forwards; 
+            animation: showText 5000ms linear forwards; 
         }
         .eclipse {
-            animation: eclipse 3000ms linear forwards;
+            animation: eclipse 5000ms linear forwards;
         }
         button {
             padding: clamp(1rem, 3vw, 2rem) clamp(2rem, 5rem, 4rem);
@@ -63,7 +66,7 @@
             transform: translate(-50%, 50%);
         }
         button:active {
-            background-color: #ddd;
+            background-color: #aaa;
         }
         @keyframes eclipse {
             from {
@@ -87,6 +90,27 @@
                 color: #fc4;
             }
         }
+        @keyframes darken {
+            0% {
+                background-color: skyblue;
+            }
+            33% {
+                background-color: skyblue;
+            }
+            45% {
+                background-color: #222;
+                border: 
+            }
+            50% {
+                background-color: #222;
+            }
+            55% {
+                background-color: #222;
+            }
+            100% {
+                background-color: skyblue;
+            }
+        }
     </style>
 </head>
 <body>
@@ -99,12 +123,14 @@
 </body>
 <script>
     
+    const container = document.querySelector(".container")
     const sun = document.querySelector(".sun")
     const moon = document.querySelector(".moon")
     const btn = document.querySelector("button")
     
     btn.addEventListener("click", function() {
         if (!moon.classList.contains("eclipse")) {
+            container.classList.add("darken")
             sun.classList.add("shine")
             moon.classList.add("eclipse")
             btn.textContent = "Restart"
