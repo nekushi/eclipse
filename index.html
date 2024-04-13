@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Solar Eclipse</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            max-width: 978px;
+            padding: 0;
+            margin: 0;
+            margin-inline: auto;
+            height: 100vh;
+        }
+        .container {
+            position: relative;
+            height: 100%;
+            background-color: skyblue;
+            overflow: hidden;
+        }
+        .container > div {
+            aspect-ratio: 1;
+            position: absolute;
+            border-radius: 100%;
+        }
+        .sun {
+            width: clamp(10rem, 34vw, 32rem);
+            background-color: #fc4;
+            box-shadow: 0 0 50px 25px #fe6;
+            top: 20%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: grid;
+            place-items: center;
+            color: #fc4;
+            font-size: clamp(1.25rem, 4vw, 3rem);
+        }
+        .moon {
+            width: clamp(9rem, 32vw, 30rem);
+            background-color: #999;
+            box-shadow: 0 0 40px 20px #333;
+            top: 20%;
+            right: -30%;
+            transform: translate(50%, -50%);
+        }
+        .shine {
+            animation: showText 3000ms linear forwards; 
+        }
+        .eclipse {
+            animation: eclipse 3000ms linear forwards;
+        }
+        button {
+            padding: clamp(1rem, 3vw, 2rem) clamp(2rem, 5rem, 4rem);
+            font-size: clamp(1rem, 3vw, 2rem);
+            border-radius: 32px;
+            border: 2px solid;
+            transition: all 300ms;
+            position: absolute;
+            bottom: 30%;
+            left: 50%;
+            transform: translate(-50%, 50%);
+        }
+        button:active {
+            background-color: #ddd;
+        }
+        @keyframes eclipse {
+            from {
+                right: -30%;
+            }
+            to {
+                right: 130%;
+            }
+        }
+        @keyframes showText {
+            0% {
+                color: #fc4;
+            }
+            40% {
+                color: #fc4;
+            }
+            60% {
+                color: #000;
+            }
+            100% {
+                color: #fc4;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sun">i miss you</div>
+        <div class="moon"></div>
+        
+        <button>Start</button>
+    </div>
+</body>
+<script>
+    
+    const sun = document.querySelector(".sun")
+    const moon = document.querySelector(".moon")
+    const btn = document.querySelector("button")
+    
+    btn.addEventListener("click", function() {
+        if (!moon.classList.contains("eclipse")) {
+            sun.classList.add("shine")
+            moon.classList.add("eclipse")
+            btn.textContent = "Restart"
+        } else {
+            location.reload()
+        }
+    })
+    
+</script>
+</html>
